@@ -59,7 +59,7 @@
             border: none;
             border-radius: 30px;
             background-color: #727272;
-            color: white;
+            color: rgb(255, 255, 255);
             cursor: pointer;
             transition: background-color 0.2s;
         }
@@ -71,6 +71,67 @@
         button:active {
             transform: scale(0.95);
             box-shadow: inset 0 0 9px #00000066;
+        }
+
+        .alert-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .alert-box {
+            background: rgb(113, 228, 238);
+            color: #333;
+            padding: 10px 50px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .alert-box h2 {
+            margin-bottom: 10px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .alert-box p {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .alert-box button {
+            padding: 20px 20px;
+            background-color: #ff0000;
+            color: rgb(0, 0, 0);
+            border-radius: 100px;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .alert-box button:hover {
+            background-color: #50ff31;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.10);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
     </style>
 </head>
@@ -105,6 +166,16 @@
             <button class="orange" onclick="calculate()">=</button>
         </div>
     </div>
+    <!-- Custom Alert Modal -->
+    <div id="customAlert" style="display:none;" class="alert-container">
+        <div class="alert-box">
+            <h2><em>Simple Calculator</em></h2>
+            <p>Created by Sudipta Mondal</p>
+            <p>(Computer Science)</p>
+            <button onclick="closeAlert()">OK</button>
+        </div>
+    </div>
+
 
     <script>
         function appendValue(value) {
@@ -158,6 +229,15 @@
             }
         }
 
+        window.onload = function () {
+            setTimeout(() => {
+                document.getElementById("customAlert").style.display = "flex";
+            }, 300); // slight delay for nicer appearance
+        }
+
+        function closeAlert() {
+            document.getElementById("customAlert").style.display = "none";
+        }
     </script>
 </body>
 </html>
